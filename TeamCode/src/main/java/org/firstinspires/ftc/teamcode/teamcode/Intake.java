@@ -3,16 +3,13 @@ package org.firstinspires.ftc.teamcode.teamcode;
 import static com.rowanmcalpin.nextftc.ftc.OpModeData.hardwareMap;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.Servo;
 import com.rowanmcalpin.nextftc.core.Subsystem;
 import com.rowanmcalpin.nextftc.core.command.Command;
 import com.rowanmcalpin.nextftc.core.command.utility.InstantCommand;
-import com.rowanmcalpin.nextftc.ftc.OpModeData;
-import com.rowanmcalpin.nextftc.ftc.hardware.ServoToPosition;
 
-public class intake extends Subsystem {
+public class Intake extends Subsystem {
 
-    public static final Intake INSTANCE = new Inake();
+    public static final Intake INSTANCE = new Intake();
     private Intake() { }
 
     // USER CODE

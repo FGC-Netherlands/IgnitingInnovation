@@ -3,21 +3,16 @@ package org.firstinspires.ftc.teamcode.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.rowanmcalpin.nextftc.core.command.Command;
-import com.rowanmcalpin.nextftc.core.command.groups.ParallelGroup;
-import com.rowanmcalpin.nextftc.core.command.groups.SequentialGroup;
 import com.rowanmcalpin.nextftc.ftc.NextFTCOpMode;
 import com.rowanmcalpin.nextftc.ftc.driving.DifferentialArcadeDriverControlled;
 import com.rowanmcalpin.nextftc.ftc.hardware.controllables.MotorEx;
 import com.rowanmcalpin.nextftc.ftc.hardware.controllables.MotorGroup;
 
-import org.firstinspires.ftc.teamcode.example.java.Claw;
-import org.firstinspires.ftc.teamcode.example.java.Lift;
-
 @TeleOp(name = "NextFTC TeleOp Program Java")
 public class TeleOpClass extends NextFTCOpMode {
 
     public TeleOpClass() {
-        super(Claw.INSTANCE, Lift.INSTANCE);
+        super(Intake.INSTANCE);
     }
 
     public String frontLeftName = "front_left";
@@ -55,5 +50,9 @@ public class TeleOpClass extends NextFTCOpMode {
     public void onStartButtonPressed() {
         driverControlled = new DifferentialArcadeDriverControlled(leftMotors, rightMotors, gamepadManager.getGamepad1());
         driverControlled.invoke();
+
+        gamepadManager.getGamepad1().getTriangle().setPressedCommand(Intake.INSTANCE::On);
+        gamepadManager.getGamepad1().getSquare().setPressedCommand(Intake.INSTANCE::Off);
+        gamepadManager.getGamepad1().getCross().setPressedCommand(Intake.INSTANCE::reverse);
     }
 }

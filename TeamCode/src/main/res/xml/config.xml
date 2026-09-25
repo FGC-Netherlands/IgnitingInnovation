@@ -13,8 +13,8 @@
 
             <!--These are the Expansion Hub's motors. Change the ports and names of your motors.-->
             <goBILDA5201SeriesMotor name="Intake_Motor" port="0"/>
-<!--            <goBILDA5201SeriesMotor name="" port="1"/>-->
-<!--            <goBILDA5201SeriesMotor name="" port="2"/>-->
+            <goBILDA5201SeriesMotor name="shooter_Motor1" port="1"/>-->
+            <goBILDA5201SeriesMotor name="shooter_Motor2" port="2"/>-->
 <!--            <goBILDA5201SeriesMotor name="" port="3"/>-->
 
             <!--These are the Expansion Hub's servos. Change the ports and names of your servos.-->

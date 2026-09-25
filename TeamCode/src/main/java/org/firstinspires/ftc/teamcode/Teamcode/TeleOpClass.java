@@ -12,7 +12,7 @@ import com.rowanmcalpin.nextftc.ftc.hardware.controllables.MotorGroup;
 public class TeleOpClass extends NextFTCOpMode {
 
     public TeleOpClass() {
-        super(Intake.INSTANCE);
+        super(Intake.INSTANCE, shooter.INSTANCE);
     }
 
     public String frontLeftName = "front_left";
@@ -50,6 +50,7 @@ public class TeleOpClass extends NextFTCOpMode {
     }
     @Override
     public void onStartButtonPressed() {
+
         driverControlled = new DifferentialArcadeDriverControlled(leftMotors, rightMotors, gamepadManager.getGamepad1());
         driverControlled.invoke();
 

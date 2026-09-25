@@ -20,6 +20,8 @@ public class TeleOpClass extends NextFTCOpMode {
     public String backLeftName = "back_left";
     public String backRightName = "back_right";
 
+    public int shooteron = 0;
+
     public MotorEx frontLeftMotor;
     public MotorEx frontRightMotor;
     public MotorEx backLeftMotor;
@@ -51,8 +53,11 @@ public class TeleOpClass extends NextFTCOpMode {
         driverControlled = new DifferentialArcadeDriverControlled(leftMotors, rightMotors, gamepadManager.getGamepad1());
         driverControlled.invoke();
 
-        gamepadManager.getGamepad1().getTriangle().setPressedCommand(Intake.INSTANCE::On);
-        gamepadManager.getGamepad1().getSquare().setPressedCommand(Intake.INSTANCE::Off);
-        gamepadManager.getGamepad1().getCross().setPressedCommand(Intake.INSTANCE::reverse);
+        gamepadManager.getGamepad1().getTriangle().setPressedCommand(Intake.INSTANCE::intake_On);
+        gamepadManager.getGamepad1().getSquare().setPressedCommand(Intake.INSTANCE::intake_Off);
+        gamepadManager.getGamepad1().getCross().setPressedCommand(Intake.INSTANCE::intake_reverse);
+
+        gamepadManager.getGamepad1().getDpadUp().setPressedCommand(shooter.INSTANCE::shooter_On);
+        gamepadManager.getGamepad1().getDpadDown().setPressedCommand(shooter.INSTANCE::shooter_Off);
     }
 }

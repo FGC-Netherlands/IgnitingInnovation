@@ -19,11 +19,13 @@ public class shooter extends Subsystem {
     public MotorEx shooter_Motor2;
    // public MotorGroup shooterMotors;
 
-    public String shooter_motor1 = "Shooter_Motor1";
-    public String shooter_motor2 = "Shooter_Motor2";
+    public String shooter_motor1 = "shooter_Motor1";
+    public String shooter_motor2 = "shooter_Motor2";
 
     @Override
     public void initialize() {
+        shooter_Motor1 = new MotorEx(shooter_motor1);
+        shooter_Motor2 = new MotorEx(shooter_motor2);
         shooter_Motor1  = hardwareMap.get(MotorEx.class, "shooter_Motor1");
         shooter_Motor2  = hardwareMap.get(MotorEx.class, "shooter_Motor2");
     }

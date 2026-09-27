@@ -26,8 +26,9 @@ public class shooter extends Subsystem {
     public void initialize() {
         shooter_Motor1 = new MotorEx(shooter_motor1);
         shooter_Motor2 = new MotorEx(shooter_motor2);
-        shooter_Motor1  = hardwareMap.get(MotorEx.class, "shooter_Motor1");
-        shooter_Motor2  = hardwareMap.get(MotorEx.class, "shooter_Motor2");
+        shooter_Motor2  = hardwareMap.get(MotorEx.class, "shooter_motor2");
+        shooter_Motor1  = hardwareMap.get(MotorEx.class, "shooter_motor1");
+
     }
 
     public Command shooter_On() {

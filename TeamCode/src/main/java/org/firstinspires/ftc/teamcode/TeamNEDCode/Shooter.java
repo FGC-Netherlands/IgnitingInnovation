@@ -6,8 +6,6 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.rowanmcalpin.nextftc.core.Subsystem;
 import com.rowanmcalpin.nextftc.core.command.Command;
 import com.rowanmcalpin.nextftc.core.command.utility.InstantCommand;
-import com.rowanmcalpin.nextftc.ftc.hardware.controllables.MotorEx;
-import com.rowanmcalpin.nextftc.ftc.hardware.controllables.MotorGroup;
 
 public class Shooter extends Subsystem {
 
@@ -27,11 +25,11 @@ public class Shooter extends Subsystem {
         shooter_Motor2  = hardwareMap.get(DcMotor.class, motor2Name);
     }
 
-    public Command shooter_On() {
+    public Command shooterOn() {
         return new InstantCommand(() -> motorToPower(1));
     }
 
-    public Command shooter_Off() {
+    public Command shooterOff() {
         return new InstantCommand(() -> motorToPower(0));
     }
 

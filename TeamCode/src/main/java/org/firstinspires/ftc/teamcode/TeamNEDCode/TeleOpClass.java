@@ -56,7 +56,7 @@ public class TeleOpClass extends NextFTCOpMode {
         gamepadManager.getGamepad1().getSquare().setPressedCommand(Intake.INSTANCE::intake_Off);
         gamepadManager.getGamepad1().getCross().setPressedCommand(Intake.INSTANCE::intake_reverse);
 
-        gamepadManager.getGamepad1().getDpadUp().setPressedCommand(Shooter.INSTANCE::shooter_On);
-        gamepadManager.getGamepad1().getDpadDown().setPressedCommand(Shooter.INSTANCE::shooter_Off);
+        gamepadManager.getGamepad1().getDpadUp().setPressedCommand(Shooter.INSTANCE::shooterOn);
+        gamepadManager.getGamepad1().getDpadDown().setPressedCommand(Shooter.INSTANCE::shooterOff);
     }
 }

@@ -12,7 +12,7 @@ import com.rowanmcalpin.nextftc.ftc.hardware.controllables.MotorGroup;
 public class TeleOpClass extends NextFTCOpMode {
 
     public TeleOpClass() {
-        super(Intake.INSTANCE, Shooter.INSTANCE);
+        super(Intake.INSTANCE, Shooter.INSTANCE, passThrough.INSTANCE);
     }
 
     public String frontLeftName = "front_left";
@@ -58,5 +58,8 @@ public class TeleOpClass extends NextFTCOpMode {
 
         gamepadManager.getGamepad1().getDpadUp().setPressedCommand(Shooter.INSTANCE::shooterOn);
         gamepadManager.getGamepad1().getDpadDown().setPressedCommand(Shooter.INSTANCE::shooterOff);
+
+        gamepadManager.getGamepad1().getDpadLeft().setPressedCommand(passThrough.INSTANCE::passTroughOn);
+        gamepadManager.getGamepad1().getDpadRight().setPressedCommand(passThrough.INSTANCE::passTroughOff);
     }
 }

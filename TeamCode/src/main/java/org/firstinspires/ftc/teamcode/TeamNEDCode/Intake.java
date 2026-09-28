@@ -1,8 +1,9 @@
-package org.firstinspires.ftc.teamcode.teamcode;
+package org.firstinspires.ftc.teamcode.TeamNEDCode;
 
 import static com.rowanmcalpin.nextftc.ftc.OpModeData.hardwareMap;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.rowanmcalpin.nextftc.core.Subsystem;
 import com.rowanmcalpin.nextftc.core.command.Command;
 import com.rowanmcalpin.nextftc.core.command.utility.InstantCommand;
@@ -32,6 +33,7 @@ public class Intake extends Subsystem {
     @Override
     public void initialize() {
         Intake_Motor  = hardwareMap.get(DcMotor.class, "Intake_Motor");
+        Intake_Motor.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
 

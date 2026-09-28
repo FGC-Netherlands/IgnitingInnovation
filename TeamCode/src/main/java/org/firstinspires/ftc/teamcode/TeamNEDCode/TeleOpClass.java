@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.teamcode;
+package org.firstinspires.ftc.teamcode.TeamNEDCode;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -12,15 +12,13 @@ import com.rowanmcalpin.nextftc.ftc.hardware.controllables.MotorGroup;
 public class TeleOpClass extends NextFTCOpMode {
 
     public TeleOpClass() {
-        super(Intake.INSTANCE, shooter.INSTANCE);
+        super(Intake.INSTANCE, Shooter.INSTANCE);
     }
 
     public String frontLeftName = "front_left";
     public String frontRightName = "front_right";
     public String backLeftName = "back_left";
     public String backRightName = "back_right";
-
-    public int shooteron = 0;
 
     public MotorEx frontLeftMotor;
     public MotorEx frontRightMotor;
@@ -58,7 +56,7 @@ public class TeleOpClass extends NextFTCOpMode {
         gamepadManager.getGamepad1().getSquare().setPressedCommand(Intake.INSTANCE::intake_Off);
         gamepadManager.getGamepad1().getCross().setPressedCommand(Intake.INSTANCE::intake_reverse);
 
-        gamepadManager.getGamepad1().getDpadUp().setPressedCommand(shooter.INSTANCE::shooter_On);
-        gamepadManager.getGamepad1().getDpadDown().setPressedCommand(shooter.INSTANCE::shooter_Off);
+        gamepadManager.getGamepad1().getDpadUp().setPressedCommand(Shooter.INSTANCE::shooter_On);
+        gamepadManager.getGamepad1().getDpadDown().setPressedCommand(Shooter.INSTANCE::shooter_Off);
     }
 }

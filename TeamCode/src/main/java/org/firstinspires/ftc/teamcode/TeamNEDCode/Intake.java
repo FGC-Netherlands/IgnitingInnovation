@@ -19,7 +19,7 @@ public class Intake extends Subsystem {
     public String name = "Intake_Motor";
 
     public Command intake_On() {
-        return new InstantCommand(() -> Intake_Motor.setPower(0.75));
+        return new InstantCommand(() -> Intake_Motor.setPower(-0.6));
     }
 
     public Command intake_Off() {
@@ -27,7 +27,7 @@ public class Intake extends Subsystem {
     }
 
     public Command intake_reverse() {
-        return new InstantCommand(() -> Intake_Motor.setPower(-0.75));
+        return new InstantCommand(() -> Intake_Motor.setPower(0.6));
     }
 
     @Override

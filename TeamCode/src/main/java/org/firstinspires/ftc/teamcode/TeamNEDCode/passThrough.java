@@ -24,16 +24,15 @@ public class passThrough extends Subsystem {
     @Override
     public void initialize() {
         passThrough_Motor  = hardwareMap.get(DcMotor.class, pmotorName);
+        passThrough_Motor.setDirection(DcMotorSimple.Direction.REVERSE);
 
     }
 
     public Command passTroughOn() {
-        passThrough_Motor.setDirection(DcMotorSimple.Direction.REVERSE);
         return new InstantCommand(() -> passThrough_Motor.setPower(1));
     }
 
     public Command passTroughOff() {
-        passThrough_Motor.setDirection(DcMotorSimple.Direction.REVERSE);
         return new InstantCommand(() -> passThrough_Motor.setPower(0));
     }
 }

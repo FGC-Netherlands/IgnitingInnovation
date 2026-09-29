@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.TeamNEDCode;
 import static com.rowanmcalpin.nextftc.ftc.OpModeData.hardwareMap;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.rowanmcalpin.nextftc.core.Subsystem;
 import com.rowanmcalpin.nextftc.core.command.Command;
 import com.rowanmcalpin.nextftc.core.command.utility.InstantCommand;
@@ -23,6 +24,7 @@ public class Shooter extends Subsystem {
     public void initialize() {
         shooter_Motor1  = hardwareMap.get(DcMotor.class, motor1Name);
         shooter_Motor2  = hardwareMap.get(DcMotor.class, motor2Name);
+        shooter_Motor2.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
     public Command shooterOn() {

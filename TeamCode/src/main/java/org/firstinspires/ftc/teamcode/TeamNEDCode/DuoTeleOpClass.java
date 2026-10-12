@@ -1,0 +1,77 @@
+package org.firstinspires.ftc.teamcode.TeamNEDCode;
+
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.rowanmcalpin.nextftc.core.command.Command;
+import com.rowanmcalpin.nextftc.core.command.groups.ParallelGroup;
+import com.rowanmcalpin.nextftc.ftc.NextFTCOpMode;
+import com.rowanmcalpin.nextftc.ftc.driving.DifferentialArcadeDriverControlled;
+import com.rowanmcalpin.nextftc.ftc.hardware.controllables.MotorEx;
+import com.rowanmcalpin.nextftc.ftc.hardware.controllables.MotorGroup;
+
+@TeleOp(name = "GEBRUIK DEZE VOOR DOSSO PERSONO")
+public class DuoTeleOpClass extends NextFTCOpMode {
+
+    public DuoTeleOpClass() {
+        super(Intake.INSTANCE, Shooter.INSTANCE, Passthrough.INSTANCE, Wings.INSTANCE);
+    }
+
+    public String frontLeftName = "front_left";
+    public String frontRightName = "front_right";
+    public String backLeftName = "back_left";
+    public String backRightName = "back_right";
+
+    public MotorEx frontLeftMotor;
+    public MotorEx frontRightMotor;
+    public MotorEx backLeftMotor;
+    public MotorEx backRightMotor;
+
+    public MotorGroup leftMotors;
+    public MotorGroup rightMotors;
+
+    public Command driverControlled;
+
+    @Override
+    public void onInit() {
+        frontLeftMotor = new MotorEx(frontLeftName);
+        backLeftMotor = new MotorEx(backLeftName);
+        backRightMotor = new MotorEx(backRightName);
+        frontRightMotor = new MotorEx(frontRightName);
+
+        // Change your motor directions to suit your robot.
+        frontLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        backLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        frontRightMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        backRightMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+
+        leftMotors = new MotorGroup(frontLeftMotor, backLeftMotor);
+        rightMotors = new MotorGroup(frontRightMotor, backRightMotor);
+    }
+    @Override
+    public void onStartButtonPressed() {
+
+        driverControlled = new DifferentialArcadeDriverControlled(leftMotors, rightMotors, gamepadManager.getGamepad1());
+        driverControlled.invoke();
+
+        gamepadManager.getGamepad1().getDpadDown().setPressedCommand(() -> new ParallelGroup(
+                Intake.INSTANCE.intake_reverse()
+        ));
+        gamepadManager.getGamepad2().getY().setPressedCommand(() -> new ParallelGroup(
+                Shooter.INSTANCE.shooterBackwards(),
+                Passthrough.INSTANCE.passTroughReverse()
+        ));
+
+        gamepadManager.getGamepad2().getA().setPressedCommand(Passthrough.INSTANCE::toggle);
+        gamepadManager.getGamepad2().getDpadUp().setPressedCommand(Shooter.INSTANCE::moreMultiplier);
+        gamepadManager.getGamepad2().getDpadDown().setPressedCommand(Shooter.INSTANCE::lessMultiplier);
+
+        gamepadManager.getGamepad2().getRightTrigger().setHeldCommand((x) -> Shooter.INSTANCE.commandToPower(x * 0.8));
+        gamepadManager.getGamepad2().getRightTrigger().setReleasedCommand((x) -> Shooter.INSTANCE.shooterOff());
+
+        gamepadManager.getGamepad1().getLeftTrigger().setHeldCommand((x) -> Intake.INSTANCE.commandToPower(x * 0.8));
+        gamepadManager.getGamepad1().getLeftTrigger().setReleasedCommand((x) -> Intake.INSTANCE.intake_Off());
+        gamepadManager.getGamepad1().getLeftBumper().setPressedCommand(Intake.INSTANCE::intake_reverse);
+
+        gamepadManager.getGamepad2().getB().setPressedCommand(Wings.INSTANCE::flap);
+    }
+}

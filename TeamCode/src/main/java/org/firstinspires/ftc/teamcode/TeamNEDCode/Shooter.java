@@ -20,6 +20,9 @@ public class Shooter extends Subsystem {
     public String motor1Name = "shooter_motor1";
     public String motor2Name = "shooter_motor2";
 
+    private boolean toggle = false;
+    private double multiplier = 0.8;
+
     @Override
     public void initialize() {
         shooter_Motor1  = hardwareMap.get(DcMotor.class, motor1Name);
@@ -35,6 +38,8 @@ public class Shooter extends Subsystem {
         return new InstantCommand(() -> motorToPower(0));
     }
 
+    public Command shooterBackwards() {return new InstantCommand(() -> motorToPower(-0.5));}
+
     public Command shooterOff2() {
         return new InstantCommand(() -> {
             shooter_Motor1.setPower(0);
@@ -42,8 +47,29 @@ public class Shooter extends Subsystem {
         });
     }
 
-    public void motorToPower(double power) {
-        shooter_Motor1.setPower(power);
-        shooter_Motor2.setPower(power);
+    public Command commandToPower(double power) {
+        return new InstantCommand(() -> motorToPower(power));
+    }
+
+    public Command toggle() {
+        toggle ^= true;
+        if (toggle) {
+            return shooterOn();
+        } else {
+            return shooterOff();
+        }
+    }
+
+    private void motorToPower(double power) {
+        shooter_Motor1.setPower(power * multiplier);
+        shooter_Motor2.setPower(power * multiplier);
+    }
+
+    public Command moreMultiplier() {
+        return new InstantCommand(() -> multiplier = Math.min(multiplier * 1.1, 1));
+    }
+
+    public Command lessMultiplier() {
+        return new InstantCommand(() -> multiplier *= 0.9);
     }
 }

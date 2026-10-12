@@ -19,21 +19,29 @@ public class Intake extends Subsystem {
     public String name = "Intake_Motor";
 
     public Command intake_On() {
-        return new InstantCommand(() -> Intake_Motor.setPower(-0.6));
+        return new InstantCommand(() -> motorToPower(0.8));
     }
 
     public Command intake_Off() {
-        return new InstantCommand(() -> Intake_Motor.setPower(0));
+        return new InstantCommand(() -> motorToPower(0));
     }
 
     public Command intake_reverse() {
-        return new InstantCommand(() -> Intake_Motor.setPower(0.6));
+        return new InstantCommand(() -> motorToPower(-0.8));
+    }
+
+    public Command commandToPower(double power) {
+        return new InstantCommand(() -> motorToPower(power));
+    }
+
+    private void motorToPower(double power) {
+        Intake_Motor.setPower(power);
     }
 
     @Override
     public void initialize() {
         Intake_Motor  = hardwareMap.get(DcMotor.class, "Intake_Motor");
-        Intake_Motor.setDirection(DcMotorSimple.Direction.REVERSE);
+        Intake_Motor.setDirection(DcMotorSimple.Direction.FORWARD);
     }
 
 

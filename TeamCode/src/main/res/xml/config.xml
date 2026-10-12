@@ -38,8 +38,8 @@
             <goBILDA5201SeriesMotor name="back_left" port="3"/>
 
             <!--These are the Control Hub's servos. Change the ports and names of your servos.-->
-<!--            <Servo name="" port="0"/>-->
-<!--            <Servo name="" port="1"/>-->
+            <Servo name="servoLeft" port="0"/>
+            <Servo name="servoRight" port="1"/>
 <!--            <Servo name="" port="2"/>-->
 <!--            <Servo name="" port="3"/>-->
 <!--            <Servo name="" port="4"/>-->

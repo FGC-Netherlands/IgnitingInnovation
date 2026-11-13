@@ -9,7 +9,7 @@
     <LynxUsbDevice name="Control Hub Portal" serialNumber="(embedded)" parentModuleAddress="173">
 
         <!--This line declares the Expansion Hub. We use RS485 connection, so we declare it with a port.-->
-        <LynxModule name="Expansion Hub 2" port="2"> <!-- You can see the port on the hub or on the REV Hardware Client. -->
+        <LynxModule name="Expansion Hub 1" port="1"> <!-- You can see the port on the hub or on the REV Hardware Client. -->
 
             <!--These are the Expansion Hub's motors. Change the ports and names of your motors.-->
             <goBILDA5201SeriesMotor name="Intake_Motor" port="0"/>
@@ -38,7 +38,7 @@
             <goBILDA5201SeriesMotor name="back_left" port="3"/>
 
             <!--These are the Control Hub's servos. Change the ports and names of your servos.-->
-<!--            <Servo name="" port="0"/>-->
+            <Servo name="passTrough_motor" port="0"/>
 <!--            <Servo name="" port="1"/>-->
 <!--            <Servo name="" port="2"/>-->
 <!--            <Servo name="" port="3"/>-->

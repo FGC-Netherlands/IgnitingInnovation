@@ -56,19 +56,19 @@ public class DuoTeleOpClass extends NextFTCOpMode {
         gamepadManager.getGamepad1().getDpadDown().setPressedCommand(() -> new ParallelGroup(
                 Intake.INSTANCE.intake_reverse()
         ));
-        gamepadManager.getGamepad2().getY().setPressedCommand(() -> new ParallelGroup(
+        gamepadManager.getGamepad1().getY().setPressedCommand(() -> new ParallelGroup(
                 Shooter.INSTANCE.shooterBackwards(),
                 Passthrough.INSTANCE.passTroughReverse()
         ));
 
-        gamepadManager.getGamepad2().getA().setPressedCommand(Passthrough.INSTANCE::toggle);
-        gamepadManager.getGamepad2().getDpadUp().setPressedCommand(Shooter.INSTANCE::moreMultiplier);
-        gamepadManager.getGamepad2().getDpadDown().setPressedCommand(Shooter.INSTANCE::lessMultiplier);
+        gamepadManager.getGamepad1().getA().setPressedCommand(Passthrough.INSTANCE::toggle);
+        gamepadManager.getGamepad1().getDpadUp().setPressedCommand(Shooter.INSTANCE::moreMultiplier);
+        gamepadManager.getGamepad1().getDpadDown().setPressedCommand(Shooter.INSTANCE::lessMultiplier);
 
         gamepadManager.getGamepad2().getRightTrigger().setHeldCommand((x) -> Shooter.INSTANCE.commandToPower(x * 0.8));
         gamepadManager.getGamepad2().getRightTrigger().setReleasedCommand((x) -> Shooter.INSTANCE.shooterOff());
 
-        gamepadManager.getGamepad1().getLeftTrigger().setHeldCommand((x) -> Intake.INSTANCE.commandToPower(x * 0.8));
+        gamepadManager.getGamepad1().getLeftTrigger().setHeldCommand(Intake.INSTANCE::commandToPower);
         gamepadManager.getGamepad1().getLeftTrigger().setReleasedCommand((x) -> Intake.INSTANCE.intake_Off());
         gamepadManager.getGamepad1().getLeftBumper().setPressedCommand(Intake.INSTANCE::intake_reverse);
 

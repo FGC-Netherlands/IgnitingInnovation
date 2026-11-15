@@ -21,7 +21,7 @@ public class Shooter extends Subsystem {
     public String motor2Name = "shooter_motor2";
 
     private boolean toggle = false;
-    private double multiplier = 0.8;
+    private double multiplier = 0.5;
 
     @Override
     public void initialize() {

@@ -18,6 +18,17 @@ public class Intake extends Subsystem {
 
     public String name = "Intake_Motor";
 
+    private boolean toggle = false;
+
+    public Command toggle() {
+        toggle ^= true;
+        if (toggle) {
+            return intake_On();
+        } else {
+            return intake_Off();
+        }
+    }
+
     public Command intake_On() {
         return new InstantCommand(() -> motorToPower(0.8));
     }

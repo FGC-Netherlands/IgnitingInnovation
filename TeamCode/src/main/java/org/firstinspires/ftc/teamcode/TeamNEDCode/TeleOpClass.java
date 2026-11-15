@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.TeamNEDCode;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.rowanmcalpin.nextftc.core.command.Command;
@@ -49,27 +50,25 @@ public class TeleOpClass extends NextFTCOpMode {
     }
     @Override
     public void onStartButtonPressed() {
-
         driverControlled = new DifferentialArcadeDriverControlled(leftMotors, rightMotors, gamepadManager.getGamepad1());
         driverControlled.invoke();
-//r2 schieten
-        //x passthrough en intake
 
-        gamepadManager.getGamepad1().getDpadDown().setPressedCommand(() -> new ParallelGroup(
+        gamepadManager.getGamepad1().getLeftBumper().setPressedCommand(() -> new ParallelGroup(
                 Shooter.INSTANCE.shooterBackwards(),
                 Passthrough.INSTANCE.passTroughReverse(),
                 Intake.INSTANCE.intake_reverse()
         ));
 
-        gamepadManager.getGamepad1().getA().setPressedCommand(Passthrough.INSTANCE::toggle);
-        gamepadManager.getGamepad2().getDpadUp().setPressedCommand(Shooter.INSTANCE::moreMultiplier);
-        gamepadManager.getGamepad2().getDpadDown().setPressedCommand(Shooter.INSTANCE::lessMultiplier);
+//        gamepadManager.getGamepad1().getA().setPressedCommand(Passthrough.INSTANCE::toggle);
+        gamepadManager.getGamepad1().getDpadUp().setPressedCommand(Shooter.INSTANCE::moreMultiplier);
+        gamepadManager.getGamepad1().getDpadDown().setPressedCommand(Shooter.INSTANCE::lessMultiplier);
 
-        gamepadManager.getGamepad1().getRightTrigger().setHeldCommand((x) -> Shooter.INSTANCE.commandToPower(x * 0.8));
+        gamepadManager.getGamepad1().getRightTrigger().setHeldCommand(Shooter.INSTANCE::commandToPower);
         gamepadManager.getGamepad1().getRightTrigger().setReleasedCommand((x) -> Shooter.INSTANCE.shooterOff());
 
-        gamepadManager.getGamepad1().getLeftTrigger().setHeldCommand((x) -> Intake.INSTANCE.commandToPower(x * 0.8));
-        gamepadManager.getGamepad1().getLeftTrigger().setReleasedCommand((x) -> Intake.INSTANCE.intake_Off());
-        gamepadManager.getGamepad1().getLeftBumper().setPressedCommand(Intake.INSTANCE::intake_reverse);
+        gamepadManager.getGamepad1().getX().setPressedCommand(() -> new ParallelGroup(
+            Intake.INSTANCE.toggle(),
+            Passthrough.INSTANCE.toggle()
+        ));
     }
 }

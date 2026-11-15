@@ -52,6 +52,8 @@ public class TeleOpClass extends NextFTCOpMode {
 
         driverControlled = new DifferentialArcadeDriverControlled(leftMotors, rightMotors, gamepadManager.getGamepad1());
         driverControlled.invoke();
+//r2 schieten
+        //x passthrough en intake
 
         gamepadManager.getGamepad1().getDpadDown().setPressedCommand(() -> new ParallelGroup(
                 Shooter.INSTANCE.shooterBackwards(),

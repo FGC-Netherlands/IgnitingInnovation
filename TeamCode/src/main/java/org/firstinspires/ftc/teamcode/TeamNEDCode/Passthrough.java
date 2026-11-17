@@ -42,21 +42,21 @@ public class Passthrough extends Subsystem {
     public Command passThroughOff() {
         return new InstantCommand(() -> {
             motorToPower(0);
-            servoToPower(0);
+            servoToPower(0.5);
         });
     }
 
     public Command passTroughReverse() {
         return new InstantCommand(() -> {
             motorToPower(-0.8);
-            servoToPower(-0.8);
+            servoToPower(0);
         });
     }
 
     public Command commandToPower(double power) {
         return new InstantCommand(() -> {
             motorToPower(power);
-            servoToPower(0.8);
+            servoToPower(1.0);
         });
     }
 

@@ -18,12 +18,12 @@
             <goBILDA5201SeriesMotor name="passTrough_motor" port="3"/>
 
             <!--These are the Expansion Hub's servos. Change the ports and names of your servos.-->
-            <Servo name="" port="0"/>
-            <Servo name="" port="1"/>
-            <Servo name="" port="2"/>
-            <Servo name="" port="3"/>
-            <Servo name="" port="4"/>
-            <Servo name="" port="5"/>
+<!--            <Servo name="" port="0"/>-->
+<!--            <Servo name="" port="1"/>-->
+<!--            <Servo name="" port="2"/>-->
+<!--            <Servo name="" port="3"/>-->
+<!--            <Servo name="" port="4"/>-->
+<!--            <Servo name="" port="5"/>-->
 
             <!--This line signifies that the Expansion Hub configuration has ended.-->
         </LynxModule>
@@ -39,8 +39,8 @@
 
             <!--These are the Control Hub's servos. Change the ports and names of your servos.-->
             <Servo name="passTrough_motor" port="0"/>
-            <Servo name="servoLeft" port="1"/>
-            <Servo name="servoRight" port="2"/>
+<!--            <Servo name="servoLeft" port="1"/>-->
+<!--            <Servo name="servoRight" port="2"/>-->
 <!--            <Servo name="" port="2"/>-->
 <!--            <Servo name="" port="3"/>-->
 <!--            <Servo name="" port="4"/>-->

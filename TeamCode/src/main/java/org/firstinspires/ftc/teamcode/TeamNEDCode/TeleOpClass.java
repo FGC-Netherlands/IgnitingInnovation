@@ -7,6 +7,7 @@ import com.rowanmcalpin.nextftc.core.command.Command;
 import com.rowanmcalpin.nextftc.core.command.groups.ParallelGroup;
 import com.rowanmcalpin.nextftc.ftc.NextFTCOpMode;
 import com.rowanmcalpin.nextftc.ftc.driving.DifferentialArcadeDriverControlled;
+import com.rowanmcalpin.nextftc.ftc.driving.MecanumDriverControlled;
 import com.rowanmcalpin.nextftc.ftc.hardware.controllables.MotorEx;
 import com.rowanmcalpin.nextftc.ftc.hardware.controllables.MotorGroup;
 
@@ -27,8 +28,7 @@ public class TeleOpClass extends NextFTCOpMode {
     public MotorEx backLeftMotor;
     public MotorEx backRightMotor;
 
-    public MotorGroup leftMotors;
-    public MotorGroup rightMotors;
+    public MotorGroup motors;
 
     public Command driverControlled;
 
@@ -40,17 +40,16 @@ public class TeleOpClass extends NextFTCOpMode {
         frontRightMotor = new MotorEx(frontRightName);
 
         // Change your motor directions to suit your robot.
-        frontLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        frontLeftMotor.setDirection(DcMotorSimple.Direction.FORWARD);
         backLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        frontRightMotor.setDirection(DcMotorSimple.Direction.FORWARD);
-        backRightMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        frontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        backRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        leftMotors = new MotorGroup(frontLeftMotor, backLeftMotor);
-        rightMotors = new MotorGroup(frontRightMotor, backRightMotor);
+        motors = new MotorGroup(frontLeftMotor, frontRightMotor, backLeftMotor, backRightMotor);
     }
     @Override
     public void onStartButtonPressed() {
-        driverControlled = new DifferentialArcadeDriverControlled(leftMotors, rightMotors, gamepadManager.getGamepad1());
+        driverControlled = new MecanumDriverControlled(new MotorEx[] {backRightMotor, backLeftMotor, frontRightMotor, frontLeftMotor}, gamepadManager.getGamepad1(), true);
         driverControlled.invoke();
 
         gamepadManager.getGamepad1().getLeftBumper().setPressedCommand(() -> new ParallelGroup(
@@ -65,10 +64,11 @@ public class TeleOpClass extends NextFTCOpMode {
 
         gamepadManager.getGamepad1().getRightTrigger().setHeldCommand(Shooter.INSTANCE::commandToPower);
         gamepadManager.getGamepad1().getRightTrigger().setReleasedCommand((x) -> Shooter.INSTANCE.shooterOff());
+        gamepadManager.getGamepad1().getRightBumper().setPressedCommand(Passthrough.INSTANCE::passTroughOn);
+        gamepadManager.getGamepad1().getRightBumper().setReleasedCommand(Passthrough.INSTANCE::passThroughOff);
 
         gamepadManager.getGamepad1().getX().setPressedCommand(() -> new ParallelGroup(
-            Intake.INSTANCE.toggle(),
-            Passthrough.INSTANCE.toggle()
+            Intake.INSTANCE.toggle()
         ));
     }
 }
